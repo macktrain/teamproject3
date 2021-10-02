@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
+const username = "dbuser";
+const password = "p4ssw0rd";
+
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/tech-friends',
+  `mongodb+srv://${username}:${password}@frienderapp-cluster.25u7v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, 
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
     useFindAndModify: false,
+    useUnifiedTopology: true
   }
 );
 
