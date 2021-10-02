@@ -7,7 +7,7 @@ const typeDefs = gql`
     lName: String
     locCity: String
     locState: String
-    age: Number
+    age: Int
     hobbies: [String]
     email: String
     password: String
@@ -18,7 +18,7 @@ const typeDefs = gql`
     sender: ID
     receiver: ID
     message: String
-    msgId: ID!  
+    msgId: Int  
     #if blank, then this is the original message otherwise, this is a reference back to the original message id
   }
 
@@ -47,6 +47,7 @@ const typeDefs = gql`
     profile(profileId: ID!): Profile
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
+    sendFriendRequest: Messages
   }
 
   type Mutation {

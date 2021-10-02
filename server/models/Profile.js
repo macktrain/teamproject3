@@ -5,32 +5,26 @@ const profileSchema = new Schema({
   fName: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   lName: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   locCity: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   locState: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   age: {
     type: Number,
     required: true,
-    unique: true,
-    trim: true,
   },
   hobbies: [
     {

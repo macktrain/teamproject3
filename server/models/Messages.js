@@ -24,7 +24,6 @@ const messageSchema = new Schema({
     type: Number,
     required: true,
     unique: true,
-    trim: true,
   },
 });
 
