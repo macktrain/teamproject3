@@ -1,16 +1,16 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 
-import { REMOVE_SKILL } from '../../utils/mutations';
+import { REMOVE_HOBBY } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-const SkillsList = ({ skills, isLoggedInUser = false }) => {
-  const [removeSkill, { error }] = useMutation(REMOVE_SKILL, {
-    update(cache, { data: { removeSkill } }) {
+const HobbiesList = ({ hobbies, isLoggedInUser = false }) => {
+  const [removeHobby, { error }] = useMutation(REMOVE_HOBBY, {
+    update(cache, { data: { removeHobby } }) {
       try {
         cache.writeQuery({
           query: QUERY_ME,
-          data: { me: removeSkill },
+          data: { me: removeHobby },
         });
       } catch (e) {
         console.error(e);
@@ -18,33 +18,33 @@ const SkillsList = ({ skills, isLoggedInUser = false }) => {
     },
   });
 
-  const handleRemoveSkill = async (skill) => {
+  const handleRemoveHobby = async (hobby) => {
     try {
-      const { data } = await removeSkill({
-        variables: { skill },
+      const { data } = await removeHobby({
+        variables: { hobby },
       });
     } catch (err) {
       console.error(err);
     }
   };
 
-  if (!skills.length) {
-    return <h3>No Skills Yet</h3>;
+  if (!hobbies.length) {
+    return <h3>No Hobbies Yet</h3>;
   }
 
   return (
     <div>
       <div className="flex-row justify-space-between my-4">
-        {skills &&
-          skills.map((skill) => (
-            <div key={skill} className="col-12 col-xl-6">
+        {hobbies &&
+          hobbies.map((hobby) => (
+            <div key={hobby} className="col-12 col-xl-6">
               <div className="card mb-3">
                 <h4 className="card-header bg-dark text-light p-2 m-0 display-flex align-center">
-                  <span>{skill}</span>
+                  <span>{hobby}</span>
                   {isLoggedInUser && (
                     <button
                       className="btn btn-sm btn-danger ml-auto"
-                      onClick={() => handleRemoveSkill(skill)}
+                      onClick={() => handleRemoveHobby (hobby)}
                     >
                       X
                     </button>
@@ -61,4 +61,4 @@ const SkillsList = ({ skills, isLoggedInUser = false }) => {
   );
 };
 
-export default SkillsList;
+export default HobbiesList;
