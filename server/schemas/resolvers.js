@@ -70,7 +70,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     // Make it so a logged in user can only remove a hobby from their own profile
-    removeHobby: async (parent, { hobby }, context) => {
+    removeHobby:  async (parent, { hobby }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
