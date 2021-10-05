@@ -928,7 +928,7 @@ a:hover {
 }
 
 .bg-danger {
-  background-color: #e64c66 !important;
+  background-color: #7cffc4 !important;
 }
 
 .bg-light {
@@ -1021,8 +1021,8 @@ a:hover {
 }
 
 .btn.btn-danger {
-  background-color: #e64c66;
-  color: #ffffff;
+  background-color: #7cffc4;
+  color: #080808;
 }
 
 .btn.btn-danger:hover {
