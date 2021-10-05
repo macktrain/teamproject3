@@ -1,7 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import ProfileList from '../components/ProfileList';
+import ProfileList from '../components/ProfileList'
+import FriendsList from '../components/FriendsList';
 
 import { QUERY_PROFILES } from '../utils/queries';
 
@@ -18,7 +19,7 @@ const Home = () => {
           ) : (
             <ProfileList
               profiles={profiles}
-              title="Here's the current roster of friends..."
+              title="Here's the current roster of people..."
             />
           )}
         </div>

@@ -15,20 +15,45 @@ const ProfileList = ({ profiles, title }) => {
             <div key={profile._id} className="col-12 col-xl-6">
               <div className="card mb-3">
                 <h4 className="card-header bg-dark text-light p-2 m-0">
-                  {profile.name} <br />
-                  <span className="text-white" style={{ fontSize: '1rem' }}>
-                    currently has {profile.hobbies ? profile.hobbies.length : 0}{' '}
-                    endorsed skill
-                    {profile.hobbies && profile.hobbies.length === 1 ? '' : 's'}
-                  </span>
+                  {profile.fName} {profile.lName} <br />
                 </h4>
-
                 <Link
-                  className="btn btn-block btn-squared btn-light text-dark"
-                  to={`/profiles/${profile._id}`}
-                >
-                  View and endorse their hobbies.
+                    className="btn btn-block btn-squared btn-light text-dark"
+                    to={`/profiles/${profile._id}`}
+                  >
+                  <div class="blurring dimmable image">
+                    <div class="ui dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <div class="ui inverted button">View Profile</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </Link>
+                <hr/>
+                <Link
+                    className="btn btn-block btn-squared btn-light text-dark"
+                    to={`/profiles/${profile._id}`}
+                  >
+                  <div class="blurring dimmable image">
+                    <div class="ui dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <div class="ui inverted button">Add Friend</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                <br />
+                <div>
+                  <strong>List of hobbies:</strong>
+                    {profile.hobbies.map(hobby => (
+                      <span>  {hobby}, </span>
+                    ))}
+                  </div>
+                <br />
               </div>
             </div>
           ))}
