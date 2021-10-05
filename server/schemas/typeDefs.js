@@ -7,8 +7,7 @@ const typeDefs = gql`
     lName: String
     locCity: String
     locState: String
-    age: Int
-    hobbies: [String]
+    age: String
     email: String
     password: String
   }
@@ -51,7 +50,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addProfile(name: String!, email: String!, password: String!): Auth
+    addProfile(fName: String, lName: String, age: String, email: String, password: String, locCity: String, locState: String): Auth
     login(email: String!, password: String!): Auth
 
     addHobby(profileId: ID!, hobby: String!): Profile

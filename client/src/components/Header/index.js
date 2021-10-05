@@ -9,15 +9,15 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
+    <header className="bg-danger text-dark mb-4 py-3 display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         <Link className="text-dark" to="/">
           <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Tech Friends
+            Friender
           </h1>
         </Link>
         <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Meet your new programming pals.
+          The G-Version of Tinder
         </p>
         <div>
           {Auth.loggedIn() ? (
@@ -31,7 +31,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
+              <Link className="btn btn-lg btn-dark m-2" to="/login">
                 Login
               </Link>
               <Link className="btn btn-lg btn-light m-2" to="/signup">
