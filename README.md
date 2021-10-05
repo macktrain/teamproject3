@@ -3,7 +3,7 @@
   ## Description# Description <a name="Description"></a>
   - During these trying times people aren't looking for hookups, they are in need of friends. Friender is here to help.
   ## Table of Contents
-  1. [Description] (#Description)
+  1. [Description](#Description)
   2. [Installation Instructions](#Installation)
   3. [Usage Information](#usage)
   4. [License](#license)
