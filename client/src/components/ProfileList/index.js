@@ -18,7 +18,7 @@ const ProfileList = ({ profiles, title }) => {
                   {profile.name} <br />
                   <span className="text-white" style={{ fontSize: '1rem' }}>
                     currently has {profile.hobbies ? profile.hobbies.length : 0}{' '}
-                    endorsed hobby
+                    endorsed skill
                     {profile.hobbies && profile.hobbies.length === 1 ? '' : 's'}
                   </span>
                 </h4>
