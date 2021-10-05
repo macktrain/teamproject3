@@ -24,6 +24,7 @@ const typeDefs = gql`
 
   type Friends {
     _id: ID
+    sender: String
     friends: [String]
     #if no Friends record, then no friends.
   }
