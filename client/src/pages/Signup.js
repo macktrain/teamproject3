@@ -8,9 +8,13 @@ import Auth from '../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: '',
+    fName: '',
+    lName: '',
     email: '',
     password: '',
+    age: '',
+    locCity: '',
+    locState: '',
   });
   const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
 
@@ -31,7 +35,7 @@ const Signup = () => {
 
     try {
       const { data } = await addProfile({
-        variables: { ...formState },
+        variables: { ...formState}, 
       });
 
       Auth.login(data.addProfile.token);
@@ -55,13 +59,27 @@ const Signup = () => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username"
-                  name="name"
-                  type="text"
-                  value={formState.name}
+                  placeholder="First Name"
+                  name="fName"
+                  type="fName"
+                  value={formState.fName}
                   onChange={handleChange}
-                />
-                <input
+                /><input
+                  className="form-input"
+                  placeholder="Last Name"
+                  name="lName"
+                  type="lName"
+                  value={formState.lName}
+                  onChange={handleChange}
+              /><input
+                  className="form-input"
+                  placeholder="How old are you?"
+                  name="age"
+                  type="age"
+                  value={formState.age}
+                  onChange={handleChange}>
+              </input>
+              <input
                   className="form-input"
                   placeholder="Your email"
                   name="email"
@@ -71,14 +89,30 @@ const Signup = () => {
                 />
                 <input
                   className="form-input"
-                  placeholder="******"
+                  placeholder="Password"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
+                <input
+                  className="form-input"
+                  placeholder="What city are you from?"
+                  name="locCity"
+                  type="locCity"
+                  value={formState.locCity}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="What state are you from?"
+                  name="locState"
+                  type="locState"
+                  value={formState.locState}
+                  onChange={handleChange}
+                />
                 <button
-                  className="btn btn-block btn-info"
+                  className="btn btn-block btn-danger"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >

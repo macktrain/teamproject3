@@ -21,11 +21,13 @@ const resolvers = {
   },
 
   Mutation: {
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+    addProfile: async (parent, { fName, lName, age, email, password, locCity, locState}) => {
+      console.log(fName, lName, age, email, password, locCity, locState)
+      const profile = await Profile.create({ fName, lName, age, email, password, locCity, locState });
       const token = signToken(profile);
-
+      console.log(profile)
       return { token, profile };
+
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
