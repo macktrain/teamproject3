@@ -1,6 +1,6 @@
 # Friender
   
-  ## Description# Description <a name="Description"></a>
+  ## Description <a name="Description"></a>
   - During these trying times people aren't looking for hookups, they are in need of friends. Friender is here to help.
   ## Table of Contents
   1. [Description](#Description)
@@ -13,9 +13,9 @@
   8. [Screenshots](#screenshots)
  
  
-  ### Installation Instructions <a name="installation"></a>
+  ## Installation Instructions <a name="installation"></a>
   - clone repo from github and run command "npm run develop"
-  ### Usage Information <a name="Usage"></a>
+  ## Usage Information <a name="Usage"></a>
   - The app is deployed live at this link:
   ## License <a name="license"></a>
   - This application is covered under None license. 
