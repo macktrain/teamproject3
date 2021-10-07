@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_HOBBY } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-const HobbiesList = ({ hobbies, isLoggedInUser = false }) => {
+const HobbiesList = ({ hobbies, isLoggedInUser }) => {
   const [removeHobby, { error }] = useMutation(REMOVE_HOBBY, {
     update(cache, { data: { removeHobby } }) {
       try {
