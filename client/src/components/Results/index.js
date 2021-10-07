@@ -11,13 +11,13 @@ import { SEND_FRIEND_REQUEST } from '../../utils/mutations';
 
 const ResultList = ({ profiles, title }) => {
     const { profileId } = useParams();
-
-    const [sendFriendRequest, { error, data }] = useMutation(SEND_FRIEND_REQUEST);
     
     if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
   }
-
+  function sendFriendRequest(){
+    alert("hey")
+  }
 
   const handleSendRequest = id => {
     try {

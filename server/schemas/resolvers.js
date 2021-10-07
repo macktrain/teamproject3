@@ -9,7 +9,10 @@ const resolvers = {
     },
 
     profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+      console.log("resolver", profileId)
+      const profile = await  Profile.findOne({ _id: profileId });
+      console.log(profile);
+      return profile;
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
