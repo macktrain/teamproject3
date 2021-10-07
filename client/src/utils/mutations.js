@@ -48,3 +48,13 @@ export const REMOVE_HOBBY = gql`
     }
   }
 `;
+
+export const SEND_FRIEND_REQUEST = gql`
+  mutation sendFriendRequest($sender: ID!, $receiver: ID!, $message: String!) {
+    sendFriendRequest(sender: $sender, receiver: $receiver, message: $message) {
+      sender
+      receiver
+      message
+    }
+  }
+`;

@@ -1,13 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const ProfileList = ({ profiles, title }) => {
-  if (!profiles.length) {
+import { useMutation } from '@apollo/client';
+
+import { SEND_FRIEND_REQUEST } from '../../utils/mutations';
+
+//THIS COMPONENT NEEDS AN ARRAY OF PROFILEIDs SO that it 
+//May prepare a results page of resultant profiles.
+//In turn a user can "Add Friend"
+
+const ResultList = ({ profiles, title }) => {
+    const { profileId } = useParams();
+
+    const [sendFriendRequest, { error, data }] = useMutation(SEND_FRIEND_REQUEST);
+    
+    if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
   }
 
-  const handleClick = id => {
-    alert (id);
+
+  const handleSendRequest = id => {
+    try {
+        const { data } = sendFriendRequest({
+            variables:  { 
+                sender: profileId,
+                receiver: id,
+                message: "requested"
+            }
+        })
+    } catch (err) {
+            console.error(err);
+        }
   }
 
   return (
@@ -41,7 +64,7 @@ const ProfileList = ({ profiles, title }) => {
                   <div class="ui dimmer">
                     <div class="content">
                       <div class="center">
-                        <div class="ui inverted button"  value={profile._id} onClick={handleClick} >Add Friend</div>
+                        <div class="ui inverted button"  value={profile._id} onClick={handleSendRequest} >Add Friend</div>
                       </div>
                     </div>
                   </div>
@@ -63,4 +86,4 @@ const ProfileList = ({ profiles, title }) => {
   );
 };
 
-export default ProfileList;
+export default ResultList;
