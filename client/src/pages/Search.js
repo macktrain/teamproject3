@@ -3,6 +3,7 @@ import { useLazyQuery } from "@apollo/client";
 import { QUERY_SINGLE_PROFILE } from "../utils/queries";
 
 import ResultList from '../components/Results';
+import {useSelector,useDispatch} from 'react-redux';
 
 const Search = () => {
   
@@ -16,31 +17,33 @@ const Search = () => {
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
-        <div className="card-body">
+      <div className="card">
           <h4 className="card-header bg-dark text-light p-2 text-center">
-            Find By UserID
+            Search For Friends
           </h4>
-          <div>
-            <input
-              className="form-input"
-              placeholder="User ID"
-              id="idSearchEl"
-              ref={inputRef}
-            />
-            <button
-              className="btn btn-block btn-danger"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                if (inputRef.current.value.length === 0) {
-                  alert("invalid id input");
-                  return;
-                } else {
-                  queryProfile();
-                }
-              }}
-            >
-              Search
-            </button>
+          <div className="card-body">
+            {/* <form id='idSearch'> */}
+              <input
+                  className="form-input"
+                  placeholder="User ID"
+                  id="idSearchEl"
+                  ref={inputRef}
+                />
+                <button
+                  className="btn btn-block btn-danger"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    if (inputRef.current.value.length === 0) {
+                      alert("invalid id input");
+                      return;
+                    } else {
+                      queryProfile();
+                    }
+                  }}
+                >
+                  Search
+                </button>
+              {/* </form> */}
           </div>
         </div>
         <div className="card">
