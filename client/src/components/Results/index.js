@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
-
 import { SEND_FRIEND_REQUEST } from '../../utils/mutations';
+import {useSelector,useDispatch} from 'react-redux';
 
 //THIS COMPONENT NEEDS AN ARRAY OF PROFILEIDs SO that it 
 //May prepare a results page of resultant profiles.
@@ -11,31 +11,16 @@ import { SEND_FRIEND_REQUEST } from '../../utils/mutations';
 //615c5daf9c448d635801ccaa
 
 const ResultList = ({ profiles, title }) => {
-  console.log (Object.keys(profiles).length);
+  const [ sendFriendRequest ] = useMutation(SEND_FRIEND_REQUEST);
+  const loggedInUser = useSelector((state) => state.userLoggedIn);
+  const userId = loggedInUser? loggedInUser.profile._id : null;
+  
   if (Object.keys(profiles).length === 0) {
     return <h3>No Profiles Yet</h3>;
   }
 
   const hobbyArr = [profiles.hobbies];
-
-  function sendFriendRequest(){
-    alert("hey")
-  }
-
-  const handleSendRequest = id => {
-    try {
-        const { data } = sendFriendRequest({
-            variables:  { 
-                sender: "123",
-                receiver: profiles._id,
-                message: "requested"
-            }
-        })
-    } catch (err) {
-            console.error(err);
-        }
-  }
-
+  
   return (
     <div>
       <h3 className="text-primary">{title}</h3>
@@ -46,8 +31,7 @@ const ResultList = ({ profiles, title }) => {
                 {profiles.fName} {profiles.lName}
               </h4>
               <hr/>
-              <Link
-                  className="btn btn-block btn-squared btn-light text-dark"
+              <Link className="btn btn-block btn-squared btn-light text-dark"
                   to={`/profiles/${profiles._id}`}
                 >
                 <div class="blurring dimmable image">
@@ -65,7 +49,14 @@ const ResultList = ({ profiles, title }) => {
                 <div class="ui dimmer">
                   <div class="content">
                     <div class="center">
-                      <div class="ui inverted button"  value={profiles._id} onClick={handleSendRequest} >Add Friend</div>
+                      <div class="ui inverted button"  value={profiles._id}
+                           onClick={() => { sendFriendRequest({
+                            variables:  { 
+                                sender: userId,
+                                receiver: profiles._id,
+                                message: "requested"
+                            }
+                        }); }} >Add Friend</div>
                     </div>
                   </div>
                 </div>

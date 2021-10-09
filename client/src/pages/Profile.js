@@ -7,12 +7,14 @@ import HobbiesList from '../components/HobbyList';
 import HobbyForm from '../components/HobbyForm';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
+import {useSelector,useDispatch} from 'react-redux';
 
 import Auth from '../utils/auth';
 
 const Profile = () => {
-  const { profileId } = useParams();
-  
+  const loggedInUser = useSelector((state) => state.userLoggedIn);
+  const profileId = loggedInUser? loggedInUser.profile._id : null;
+
   // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
   const { loading, data } = useQuery(
     profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
@@ -26,14 +28,14 @@ const Profile = () => {
   
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
 
-  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Redirect to="/me" />;
-  }
+  // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
+  //   return <Redirect to="/me" />;
+  // }
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
+  
   if (!profile?.fName) {
     return (
       <h4>
