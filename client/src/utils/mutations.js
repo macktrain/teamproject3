@@ -34,6 +34,13 @@ export const LOGIN_USER = gql`
       token
       profile {
         _id
+        fName
+        lName
+        email
+        password
+        locCity
+        locState
+        age
       }
     }
   }
@@ -50,11 +57,9 @@ export const REMOVE_HOBBY = gql`
 `;
 
 export const SEND_FRIEND_REQUEST = gql`
-  mutation sendFriendRequest($sender: ID!, $receiver: ID!, $message: String!) {
+  mutation sendFriendRequest($sender: String!, $receiver: String!, $message: String!) {
     sendFriendRequest(sender: $sender, receiver: $receiver, message: $message) {
-      sender
-      receiver
-      message
+      _id 
     }
   }
 `;

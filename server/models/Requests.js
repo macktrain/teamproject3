@@ -3,13 +3,13 @@ const bcrypt = require('bcrypt');
 
 const requestSchema = new Schema({
   sender: {
-    type: Object,
+    type: Number,
     required: true,
     unique: true,
     trim: true,
   },
   receiver: {
-    type: Object,
+    type: Number,
     required: true,
     unique: true,
     trim: true,

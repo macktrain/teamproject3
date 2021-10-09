@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {
   ApolloClient,
   InMemoryCache,
@@ -15,6 +16,18 @@ import Login from './pages/Login';
 import Search from './pages/Search';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
+//global variables start
+window.user = {
+  id: 0,
+  age: "",
+  fName: "",
+  fLame: "",
+  locCity: "",
+  locState: "",
+  hobbies: [],
+}
+//global variables end
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -38,6 +51,16 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      dispatch({
+        type: 'LOGIN',
+        payload: JSON.parse(loggedInUser)
+      })
+    }
+  },[])
   return (
     <ApolloProvider client={client}>
       <Router>

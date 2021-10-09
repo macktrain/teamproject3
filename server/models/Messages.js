@@ -19,12 +19,7 @@ const messageSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
-  },
-  msgId: {
-    type: Number,
-    required: true,
-    unique: true,
-  },
+  }
 });
 
 

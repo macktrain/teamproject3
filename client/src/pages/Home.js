@@ -14,14 +14,6 @@ const Home = () => {
     <main>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ProfileList
-              profiles={profiles}
-              title="Here's the current roster of people..."
-            />
-          )}
         </div>
       </div>
     </main>
