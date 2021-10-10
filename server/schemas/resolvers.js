@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Requests } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -22,6 +22,16 @@ const resolvers = {
   },
 
   Mutation: {
+    sendFriendRequest: async (parent, { sender, receiver, response }) => {
+      try {
+        const friendrequest = await Requests.create({ sender, receiver, response });
+        console.log(friendrequest)
+        return { friendrequest };
+      } catch (e) {
+        console.log(e);
+      }
+
+    },
     addProfile: async (parent, { fName, lName, age, email, password, locCity, locState}) => {
       console.log(fName, lName, age, email, password, locCity, locState)
       const profile = await Profile.create({ fName, lName, age, email, password, locCity, locState });

@@ -164,6 +164,19 @@ textarea {
 }
 
 /**
+/*
+ * Textbox with rounded corners
+ */
+ .rounded {
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 20px; 
+  width: 100%;
+  height: 12px;
+  margin-bottom: 10px; 
+}
+
+/**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
  */

@@ -15,10 +15,9 @@ const typeDefs = gql`
 
   type Messages {
     _id: ID
-    sender: ID
-    receiver: ID
+    sender: String
+    receiver: String
     message: String
-    msgId: Int  
     #if blank, then this is the original message otherwise, this is a reference back to the original message id
   }
 
@@ -31,9 +30,9 @@ const typeDefs = gql`
 
   type Requests {
     _id: ID
-    sender: ID
-    receiver: ID
-    response: String!
+    sender: String
+    receiver: String
+    response: String
     #The 3 response options are: "blank, accepted or rejected"
   }
 
@@ -48,7 +47,6 @@ const typeDefs = gql`
     profile(profileId: ID!): Profile
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     me: Profile
-    sendFriendRequest: Messages
   }
 
   type Mutation {
@@ -57,7 +55,7 @@ const typeDefs = gql`
     addHobby(profileId: ID!, hobby: String!): Profile
     removeProfile: Profile
     removeHobby(hobby: String!): Profile
-    sendFriendRequest(profileId: ID): Requests
+    sendFriendRequest(sender: String, receiver: String, response: String): Requests
   }
 `;
 

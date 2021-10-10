@@ -3,21 +3,18 @@ const bcrypt = require('bcrypt');
 
 const messageSchema = new Schema({
   sender: {
-    type: Object,
+    type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   receiver: {
-    type: Object,
+    type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   message: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
   }
 });

@@ -3,14 +3,13 @@ const bcrypt = require('bcrypt');
 
 const friendsSchema = new Schema({
   sender: {
-    type: Object,
+    type: String,
     required: true,
-    unique: true,
     trim: true,
   },
   friends: [
     {
-      type: Object,
+      type: String,
       trim: true,
     },
   ],
