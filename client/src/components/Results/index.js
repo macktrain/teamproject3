@@ -14,15 +14,19 @@ const ResultList = ({ profiles, title }) => {
   const [requestLoading, setRequestLoading] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [requestError, setRequestError] = useState(false);
+  const [btnDisable, setbtnDisable] = useState(false);
   
   const [ sendFriendRequest ] = useMutation(SEND_FRIEND_REQUEST, {
     onCompleted() {
+      setbtnDisable(true);
       setRequestLoading(false);
       setRequestSuccess(true);
     },
     onError(error) {
-      console.log('UPDATED');
+      console.log('DETAILED SEND_FRIEND_REQUEST errors');
       console.log(JSON.stringify(error, null, 2));
+      
+      setbtnDisable(false);
       setRequestLoading(false);
       setRequestError(true);
     },
@@ -32,14 +36,13 @@ const ResultList = ({ profiles, title }) => {
   const userId = loggedInUser? loggedInUser.profile._id : null;
   
   if (Object.keys(profiles).length === 0) {
-    return <h3>No Profiles Yet</h3>;
+    return <h6><strong>No results returned</strong></h6>;
   }
 
   const hobbyArr = [profiles.hobbies];
   
   return (
     <div>
-      <h3 className="text-primary">{title}</h3>
       <div className="flex-row justify-space-between my-4">
           <div key={profiles._id} className="col-12 col-xl-6">
             <div className="card mb-3">
@@ -65,7 +68,7 @@ const ResultList = ({ profiles, title }) => {
                 <div class="ui dimmer">
                   <div class="content">
                     <div class="center">
-                      <div class="ui inverted button"  value={profiles._id}
+                      <div class="ui inverted button" disabled={btnDisable} value={profiles._id}
                            onClick={() => { 
                               setRequestLoading(true);
                               setRequestSuccess(false);

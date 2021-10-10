@@ -24,13 +24,13 @@ const Search = () => {
           <div className="card-body">
             {/* <form id='idSearch'> */}
               <input
-                  className="form-input"
+                  class="rounded"
                   placeholder="User ID"
                   id="idSearchEl"
                   ref={inputRef}
                 />
                 <button
-                  className="btn btn-block btn-danger"
+                  className="btn btn-block"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     if (inputRef.current.value.length === 0) {
@@ -73,7 +73,7 @@ const Search = () => {
               />
 
               <button
-                className="btn btn-block btn-danger"
+                className="btn btn-block"
                 style={{ cursor: "pointer" }}
                 type="submit"
               >
@@ -81,12 +81,18 @@ const Search = () => {
               </button>
             </form>
           </div>
-        </div>
-        <div>
-            <ResultList
-                profiles={profile}
-                title="These people meet your criteria:"
-            />
+        </div>       <div className="card">
+          <h4 className="card-header bg-dark text-light p-2 text-center">
+            Search Results
+          </h4>
+          <div className="card-body">
+            <form>
+              <ResultList
+                  profiles={profile}
+                  title="These people meet your criteria:"
+              />
+            </form>
+          </div>
         </div>
       </div>
     </main>

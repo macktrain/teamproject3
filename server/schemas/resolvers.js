@@ -23,8 +23,6 @@ const resolvers = {
 
   Mutation: {
     sendFriendRequest: async (parent, { sender, receiver, response }) => {
-      console.log ('mutation check');
-      console.log( sender, receiver, response )
       try {
         const friendrequest = await Requests.create({ sender, receiver, response });
         console.log(friendrequest)

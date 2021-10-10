@@ -55,7 +55,7 @@ const typeDefs = gql`
     addHobby(profileId: ID!, hobby: String!): Profile
     removeProfile: Profile
     removeHobby(hobby: String!): Profile
-    sendFriendRequest(sender: String!, receiver: String!, response: String!): Requests
+    sendFriendRequest(sender: String, receiver: String, response: String): Requests
   }
 `;
 
