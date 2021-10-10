@@ -1,23 +1,16 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const requestSchema = new Schema({
   sender: {
-    type: Number,
-    required: true,
-    unique: true,
+    type: String,
     trim: true,
   },
   receiver: {
-    type: Number,
-    required: true,
-    unique: true,
+    type: String,
     trim: true,
   },
   response: {
     type: String,
-    required: true,
-    unique: true,
     trim: true,
   },
 });
