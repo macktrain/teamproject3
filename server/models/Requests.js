@@ -5,6 +5,14 @@ const requestSchema = new Schema({
     type: String,
     trim: true,
   },
+  sender_fName: {
+    type: String,
+    trim: true,
+  },
+  sender_lName: {
+    type: String,
+    trim: true,
+  },
   receiver: {
     type: String,
     trim: true,

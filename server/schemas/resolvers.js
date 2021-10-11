@@ -11,6 +11,10 @@ const resolvers = {
       return Profile.find();
     },
 
+    requestProfiles: async (parent, args) => {
+      return Profile.findById(profile => profile._id === args.profileId);
+    },
+
     profile: async (parent, { profileId }) => {
       const profile = await  Profile.findOne({ _id: profileId });
       return profile;
@@ -28,9 +32,9 @@ const resolvers = {
   },
 
   Mutation: {
-    sendFriendRequest: async (parent, { sender, receiver, response }) => {
+    sendFriendRequest: async (parent, { sender, sender_fName, sender_lName, receiver, response }) => {
       try {
-        const friendrequest = await Requests.create({ sender, receiver, response });
+        const friendrequest = await Requests.create({ sender, sender_fName, sender_lName, receiver, response });
         console.log(friendrequest)
         return { friendrequest };
       } catch (e) {

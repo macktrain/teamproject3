@@ -57,10 +57,12 @@ export const REMOVE_HOBBY = gql`
 `;
 
 export const SEND_FRIEND_REQUEST = gql`
-  mutation sendFriendRequest($sender: String, $receiver: String, $response: String) {
-    sendFriendRequest(sender: $sender, receiver: $receiver, response: $response) {
+  mutation sendFriendRequest($sender: String, $sender_fName: String, $sender_lName: String, $receiver: String, $response: String) {
+    sendFriendRequest(sender: $sender, sender_fName: $sender_fName, sender_lName: $sender_lName, receiver: $receiver, response: $response) {
       _id 
       sender
+      sender_fName
+      sender_lName
       receiver
       response
     }
