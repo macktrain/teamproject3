@@ -1,22 +1,27 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-
-import ProfileList from '../components/ProfileList'
-import FriendsList from '../components/FriendsList';
-
-import { QUERY_PROFILES } from '../utils/queries';
+import {useSelector} from 'react-redux';
+import Mailbox from '../components/Mailbox';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data?.profiles || [];
+  const loggedInUser = useSelector((state) => state.userLoggedIn);
+  const userId = loggedInUser? loggedInUser.profile._id : null;
+
+  let mailbox = "";
+  if (userId) {
+    mailbox = <Mailbox />
+  }
 
   return (
-    <main>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
+    <div className="flex-row justify-center">
+      <div id='homeMain'>
+        <div id='homeLeft'>
+          well
+        </div>
+        <div id='homeRight'>
+          {mailbox}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
