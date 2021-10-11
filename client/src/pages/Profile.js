@@ -9,7 +9,7 @@ import HobbyForm from '../components/HobbyForm';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import {useSelector,useDispatch} from 'react-redux';
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 const Profile = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);
