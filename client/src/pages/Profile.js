@@ -1,20 +1,16 @@
 import React from 'react';
-
 import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
 import HobbiesList from '../components/HobbyList';
 import HobbyForm from '../components/HobbyForm';
-
+import HobbyList from '../components/HobbyList'
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import {useSelector,useDispatch} from 'react-redux';
-
-import Auth from '../utils/auth';
-
+import biopic from '../pages/assets/biopic.png';
+// import Auth from '../utils/auth';
 const Profile = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);
   const profileId = loggedInUser? loggedInUser.profile._id : null;
-
   // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
   const { loading, data } = useQuery(
     profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
@@ -22,20 +18,15 @@ const Profile = () => {
       variables: { profileId: profileId },
     }
   );
-
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
-  
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
-
   // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
   //   return <Redirect to="/me" />;
   // }
-
   if (loading) {
     return <div>Loading...</div>;
   }
-  
   if (!profile?.fName) {
     return (
       <h4>
@@ -44,26 +35,27 @@ const Profile = () => {
       </h4>
     );
   }
-
   return (
-    <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.fName}'s` : 'Your'} friends have endorsed these
-        hobbies...
-      </h2>
-
-      {profile.hobbies?.length > 0 && (
-        <HobbiesList
-          hobbies={profile.hobbies}
-          isLoggedInUser={!profileId && true}
-        />
-      )}
-
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <HobbyForm profileId={profile._id} />
+    <main className="flex-row justify-center mb-4">
+      <div className=" col-9 col-lg-8">
+        <div className="card">
+          <h4 className="card-header bg-dark text-light p-2 text-center">
+            {profile.fName} {profile.lName}
+              <h4 className="bg-dark text-light p-2 text-center">Hand Out your id: {profile._id}</h4>
+          </h4>
+          <img className="bio justify-content-md-center" src={biopic} alt={biopic} />
+          <hr/>
+          <h5 className= "bg-dark text-light p-2 text-center " >
+          {profile.locCity},{profile.locState} Age: {profile.age}
+          </h5>
+          <hr/>
+          <h5 className= "bg-dark text-light p-2 text-center " >
+            My Hobbies are: {profile.hobbies}
+          </h5>
+          <HobbyForm />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
-
 export default Profile;
