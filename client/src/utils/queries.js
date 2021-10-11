@@ -69,6 +69,8 @@ export const RETRIEVE_FRIEND_REQUESTS = gql`
     retrieveFriendRequests(receiver: $receiver, response: $response) {
       _id
       sender
+      sender_lName
+      sender_fName
       receiver
       response
     }

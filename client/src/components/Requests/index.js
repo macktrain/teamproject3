@@ -18,9 +18,6 @@ const Requests = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);
   const userId = loggedInUser? loggedInUser.profile._id : null;
   
-  console.log ("CHECKING USERID")
-  console.log (userId)
-
   const { loading, data } = useQuery(RETRIEVE_FRIEND_REQUESTS,
     {
       variables: { 
@@ -28,40 +25,35 @@ const Requests = () => {
         response: "requested" },
     }
   );
-
-  console.log ("CHECKING DATA");
-  console.log (data);
   
-  if (data) {
+  if (!data) {
     return <h6><strong>Nobody wants to be your friend.</strong></h6>;
   }
-
-  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
-  const profile = data?.me || data?.profile || {};
-  
+    
   return (
-    <div class="ui cards">
-        <div class="card">
-            <div class="content">
-                <img class="right floated mini ui image" src={userImg}/>
-                <div class="header">
-                    Elliot Fu
-                </div>
-                <div class="meta">
-                    Friends of Veronika
-                </div>
-                <div class="description">
-                Elliot requested permission to view your contact details
-                </div>
-            </div>
-            <div class="extra content">
-                <div class="ui two buttons">
-                <div class="ui basic green button">Approve</div>
-                <div class="ui basic red button">Decline</div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div>
+        {data.retrieveFriendRequests.map((request) => (
+          <div class="ui cards">
+              <div class="card">
+                  <div class="content">
+                      <img class="right floated mini ui image" src={userImg}/>
+                      <div class="header">
+                          <strong>{request.sender_fName} {request.sender_lName}</strong>
+                      </div>
+                      <div class="description">
+                      {request.sender_fName} wants to friend you
+                      </div>
+                  </div>
+                  <div class="extra content">
+                      <div class="resultsBtn">
+                        <button class="btn btnApprove">Approve</button>
+                        <button class="btn btnDecline">Decline</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        ))}
+      </div>
   );
 };
 

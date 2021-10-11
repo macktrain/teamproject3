@@ -22,7 +22,6 @@ export const ADD_HOBBY = gql`
   mutation addHobby($profileId: ID!, $hobby: String!) {
     addHobby(profileId: $profileId, hobby: $hobby) {
       _id
-      name
       hobbies
     }
   }
