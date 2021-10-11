@@ -31,6 +31,8 @@ const typeDefs = gql`
   type Requests {
     _id: ID
     sender: String
+    sender_fName: String
+    sender_lName: String
     receiver: String
     response: String
     #The 3 response options are: "blank, accepted or rejected"
@@ -60,7 +62,7 @@ const typeDefs = gql`
     addHobby(profileId: ID!, hobby: String!): Profile
     removeProfile: Profile
     removeHobby(hobby: String!): Profile
-    sendFriendRequest(sender: String, receiver: String, response: String): Requests
+    sendFriendRequest(sender: String, sender_fName: String, sender_lName: String, receiver: String, response: String): Requests
   }
 `;
 
