@@ -1,22 +1,22 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-// import Mailbox from '../components/Mailbox';
+import Requests from '../components/Requests';
+import homeImg from './assets/images/friender.gif'
 const Home = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);
   const userId = loggedInUser? loggedInUser.profile._id : null;
-  let mailbox = "";
+
+  let requests = "";
   if (userId) {
-    // mailbox = <Mailbox />
-    mailbox = "";
+    requests = <Requests />
   }
   return (
     <div className="flex-row justify-center">
       <div id='homeMain'>
         <div id='homeLeft'>
-          well
         </div>
         <div id='homeRight'>
-          {mailbox}
+          {requests}
         </div>
       </div>
     </div>

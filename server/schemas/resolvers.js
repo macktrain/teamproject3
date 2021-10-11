@@ -11,6 +11,10 @@ const resolvers = {
       return Profile.find();
     },
 
+    requestProfiles: async (parent, args) => {
+      return Profile.findById(profile => profile._id === args.profileId);
+    },
+
     profile: async (parent, { profileId }) => {
       const profile = await  Profile.findOne({ _id: profileId });
       return profile;

@@ -2,8 +2,23 @@ import { gql } from '@apollo/client';
 
 //This can be used after login to show all friends
 export const QUERY_PROFILES = gql`
-  query allProfiles {
-    profiles {
+query allProfiles {
+  profiles {
+    _id
+    fName
+    lName
+    locCity
+    locState
+    age
+    hobbies
+    email
+  }
+}
+`;
+
+export const GET_REQUEST_DETAILS = gql`
+  query requestProfiles($profileId: [ID]) {
+    requestProfiles(profileId: $profileId) {
       _id
       fName
       lName
