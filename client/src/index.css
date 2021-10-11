@@ -1719,3 +1719,20 @@ label form [type='radio'] {
     align-content: center;
   }
 }
+
+.resultsBtn {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.btnApprove {
+  background-color: green;
+  color: white;
+}
+
+.btnDecline {
+  background-color: rgb(124, 0, 0);
+  color: white;
+}
