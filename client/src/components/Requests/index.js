@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { RETRIEVE_FRIEND_REQUESTS } from '../../utils/queries';
-import { QUERY_SINGLE_PROFILE } from '../../utils/queries';
+// import { ADD_FRIEND } from '../../utils/mutations';
+import { DECLINE_FRIEND } from '../../utils/mutations';
 import {useSelector} from 'react-redux';
 import { isNullableType } from 'graphql';
 import userImg from '../../pages/assets/images/user.gif'
@@ -17,7 +18,24 @@ import userImg from '../../pages/assets/images/user.gif'
 const Requests = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);
   const userId = loggedInUser? loggedInUser.profile._id : null;
-  
+
+  // const [ addFriend ] = useMutation(ADD_FRIEND, {
+  //   onError(error) {
+  //     console.log('DETAILED ADD_FRIEND errors');
+  //     console.log(JSON.stringify(error, null, 2));
+  //   },
+  // });
+
+  const [ declineFriend ] = useMutation(DECLINE_FRIEND, {
+    onCompleted() {
+      window.location.replace("/");
+    },
+    onError(error) {
+      console.log('DETAILED DECLINE_FRIEND errors');
+      console.log(JSON.stringify(error, null, 2));
+    },
+  });
+
   const { loading, data } = useQuery(RETRIEVE_FRIEND_REQUESTS,
     {
       variables: { 
@@ -46,8 +64,11 @@ const Requests = () => {
                   </div>
                   <div class="extra content">
                       <div class="resultsBtn">
-                        <button class="btn btnApprove">Approve</button>
-                        <button class="btn btnDecline">Decline</button>
+                        <button class="btn btnApprove" >Approve</button>
+                        {/* <button class="btn btnApprove" onClick={() => { 
+                              addFriend({ variables:  { _id: request._id } }); declineFriend({ variables:  { _id: request._id } });}} >Approve</button> */}
+                        <button class="btn btnDecline" onClick={() => { 
+                              declineFriend({ variables:  { _id: request._id } }); }} >Decline</button>
                       </div>
                   </div>
               </div>

@@ -42,6 +42,16 @@ const resolvers = {
       }
 
     },
+    declineFriend: async (parent, { _id }) => {
+      try {
+        const declineFriend = await Requests.deleteOne({ _id });
+        console.log(declineFriend)
+        return { declineFriend };
+      } catch (e) {
+        console.log(e);
+      }
+
+    },
     addProfile: async (parent, { fName, lName, age, email, password, locCity, locState}) => {
       console.log(fName, lName, age, email, password, locCity, locState)
       const profile = await Profile.create({ fName, lName, age, email, password, locCity, locState });

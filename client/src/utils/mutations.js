@@ -67,3 +67,16 @@ export const SEND_FRIEND_REQUEST = gql`
     }
   }
 `;
+
+export const DECLINE_FRIEND = gql`
+  mutation declineFriend($_id: ID) {
+    declineFriend(_id: $_id) {
+      _id 
+      sender
+      sender_fName
+      sender_lName
+      receiver
+      response
+    }
+  }
+`;
