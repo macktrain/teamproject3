@@ -19,10 +19,10 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_HOBBY = gql`
-  mutation addHobby($profileId: ID!, $hobby: String!) {
-    addHobby(profileId: $profileId, hobby: $hobby) {
+mutation addHobby($profileId: ID, $hobby: String) {
+  addHobby(profileId: $profileId, hobby: [$hobby]) {
       _id
-      name
+      fName
       hobbies
     }
   }
@@ -57,10 +57,25 @@ export const REMOVE_HOBBY = gql`
 `;
 
 export const SEND_FRIEND_REQUEST = gql`
-  mutation sendFriendRequest($sender: String, $receiver: String, $response: String) {
-    sendFriendRequest(sender: $sender, receiver: $receiver, response: $response) {
+  mutation sendFriendRequest($sender: String, $sender_fName: String, $sender_lName: String, $receiver: String, $response: String) {
+    sendFriendRequest(sender: $sender, sender_fName: $sender_fName, sender_lName: $sender_lName, receiver: $receiver, response: $response) {
       _id 
       sender
+      sender_fName
+      sender_lName
+      receiver
+      response
+    }
+  }
+`;
+
+export const DECLINE_FRIEND = gql`
+  mutation declineFriend($_id: ID) {
+    declineFriend(_id: $_id) {
+      _id 
+      sender
+      sender_fName
+      sender_lName
       receiver
       response
     }

@@ -75,6 +75,8 @@ const ResultList = ({ profiles, title }) => {
                               sendFriendRequest({
                               variables:  { 
                                   sender: userId,
+                                  sender_fName: loggedInUser.profile.fName,
+                                  sender_lName: loggedInUser.profile.lName,
                                   receiver:profiles._id,
                                   response: "requested"
                               }
