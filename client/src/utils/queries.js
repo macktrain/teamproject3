@@ -47,3 +47,27 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+//This can be used to pull all friend requests made to a logged on user
+export const RETRIEVE_FRIEND_REQUESTS = gql`
+  query retrieveFriendRequests($receiver: String, $response: String) {
+    retrieveFriendRequests(receiver: $receiver, response: $response) {
+      _id
+      sender
+      receiver
+      response
+    }
+  }
+`;
+
+//This can be used to pull all friend requests made to a logged on user
+export const REQS = gql`
+  query reqs {
+    requests {
+      _id
+      sender
+      receiver
+      response
+    }
+  }
+`;

@@ -4,6 +4,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    reqs: async () => {
+      return Requests.find();
+    },
     profiles: async () => {
       return Profile.find();
     },
@@ -19,6 +22,9 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    retrieveFriendRequests: async (parent, { receiver, response }) => {
+      return Requests.find({ receiver: receiver, response: response });
+    }
   },
 
   Mutation: {
