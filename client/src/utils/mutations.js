@@ -19,9 +19,10 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_HOBBY = gql`
-  mutation addHobby($profileId: ID!, $hobby: String!) {
-    addHobby(profileId: $profileId, hobby: $hobby) {
+mutation addHobby($profileId: ID, $hobby: String) {
+  addHobby(profileId: $profileId, hobby: [$hobby]) {
       _id
+      fName
       hobbies
     }
   }

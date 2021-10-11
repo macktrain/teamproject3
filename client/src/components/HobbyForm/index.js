@@ -1,34 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
+import {useSelector} from 'react-redux'
 import { ADD_HOBBY } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
-
-const HobbyForm = ({ profileId }) => {
+const HobbyForm = () => {
   const [hobby, setHobby] = useState('');
-
+  const loggedInUser = useSelector((state) => state.userLoggedIn);
+  const profileId = loggedInUser? loggedInUser.profile._id : null;
   const [addHobby, { error }] = useMutation(ADD_HOBBY);
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const data = await addHobby({
         variables: { profileId, hobby },
       });
-
+      console.log(profileId)
       setHobby('');
     } catch (err) {
       console.error(err);
     }
   };
-
   return (
     <div>
-      <h4>Endorse some more hobbies below.</h4>
-
+      <h4>Add a New Hobby</h4>
       {Auth.loggedIn() ? (
         <form
           className="flex-row justify-center justify-space-between-md align-center"
@@ -42,10 +37,9 @@ const HobbyForm = ({ profileId }) => {
               onChange={(event) => setHobby(event.target.value)}
             />
           </div>
-
           <div className="col-12 col-lg-3">
             <button className="btn btn-info btn-block py-3" type="submit">
-              Endorse Hobby
+              Add Hobby
             </button>
           </div>
           {error && (
@@ -63,5 +57,4 @@ const HobbyForm = ({ profileId }) => {
     </div>
   );
 };
-
 export default HobbyForm;
