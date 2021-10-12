@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile, Requests } = require('../models');
+const { Profile, Requests, Friends } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -58,8 +58,8 @@ const resolvers = {
       const token = signToken(profile);
       console.log(profile)
       return { token, profile };
-
     },
+
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
 
@@ -93,6 +93,7 @@ const resolvers = {
         }
       )
     },
+
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
@@ -100,6 +101,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
     // Make it so a logged in user can only remove a hobby from their own profile
     removeHobby:  async (parent, { hobby }, context) => {
       if (context.user) {
@@ -110,6 +112,26 @@ const resolvers = {
         );
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+
+    friendProfile: async (parent, { sender }) => {
+      const newFriendProfile = await Friends.create({ sender });
+      return { newFriendProfile };
+    },
+
+    addFriend: async (parent, { sender, friend }) => {
+      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+      
+      return await Friends.findOneAndUpdate(
+        { sender: sender },
+        {
+          $addToSet: { Friends: friend },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      )
     },
   },
 };

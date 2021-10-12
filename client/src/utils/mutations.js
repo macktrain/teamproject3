@@ -81,3 +81,23 @@ export const DECLINE_FRIEND = gql`
     }
   }
 `;
+
+export const FRIEND_PROFILE = gql`
+  mutation friendProfile($sender: String) {
+    friendProfile(sender: $sender) {
+      _id
+      sender
+      friends
+    }
+  }
+`;
+
+export const ADD_FRIEND = gql`
+mutation addFriend($sender: String, $friend: String) {
+  addFriend(sender: $sender, friend: [$friend]) {
+      _id
+      sender
+      friends
+    }
+  }
+`;
