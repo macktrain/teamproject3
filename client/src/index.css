@@ -141,6 +141,11 @@ sup {
 img {
   border-style: none;
 }
+#biopic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Forms
    ========================================================================== */

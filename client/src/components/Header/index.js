@@ -13,11 +13,11 @@ import flogo from '../assets/flogo.png';
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontSize: "60px",
+    fontSize: "40px",
     color: "grey"
   },
   navlinks: {
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(1),
     display: "flex",
   },
  logo: {
@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
     textShaddow: "3px 3px grey",
     color: "grey",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    marginLeft: theme.spacing(4),
     "&:hover": {
       color: "black",
-      border: "1px dotted white",
+      border: "none",
     },
     bar: {
       color:"white"
@@ -62,14 +62,14 @@ function Header() {
 {loggedInUser ? (
   <>
   <div className = {classes.navlinks}>
-  <Link className= {classes.link} to="/search">
-    Search for a Friend
-  </Link>
+    <Link className= {classes.link} to="/search">
+      Search 
+    </Link>
     <Link className={classes.link} to="../FriendsList/index.js">
       Friends
     </Link>
     <Link className={classes.link} to="/me">
-      View My Profile
+      View Me
     </Link>
     <Link className={ classes.link} to="/inbox" >
       Inbox

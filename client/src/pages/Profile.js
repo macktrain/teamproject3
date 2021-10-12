@@ -43,7 +43,9 @@ const Profile = () => {
             {profile.fName} {profile.lName}
               <h4 className="bg-dark text-light p-2 text-center">Hand Out your id: {profile._id}</h4>
           </h4>
-          <img className="bio justify-content-md-center" src={biopic} alt={biopic} />
+          <div id="biopic" >
+            <img className="bio justify-content-md-center" src={biopic} alt={biopic} />
+          </div>
           <hr/>
           <h5 className= "bg-dark text-light p-2 text-center " >
           {profile.locCity},{profile.locState} Age: {profile.age}
