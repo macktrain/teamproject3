@@ -6,7 +6,7 @@ import HobbyForm from '../components/HobbyForm';
 import HobbyList from '../components/HobbyList'
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import {useSelector,useDispatch} from 'react-redux';
-import biopic from '../pages/assets/biopic.png';
+import biopic from '../components/assets/biopic.png';
 // import Auth from '../utils/auth';
 const Profile = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);

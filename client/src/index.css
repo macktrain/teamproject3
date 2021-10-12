@@ -1736,3 +1736,10 @@ label form [type='radio'] {
   background-color: rgb(124, 0, 0);
   color: white;
 }
+
+.MuiToolbar-root {
+  background-color: #7cffc4;
+}
+.MuiAppBar-root {
+  background-color: #7cffc4 
+}
