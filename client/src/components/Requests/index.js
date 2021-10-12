@@ -10,11 +10,6 @@ import {useSelector} from 'react-redux';
 import { isNullableType } from 'graphql';
 import userImg from '../assets/usrImg.png'
 
-//THIS COMPONENT NEEDS AN ARRAY OF PROFILEIDs SO that it 
-//May prepare a results page of resultant profiles.
-//In turn a user can "Add Friend"
-//615c5daf9c448d635801ccaa
-
 const Requests = () => {
   const loggedInUser = useSelector((state) => state.userLoggedIn);
   const userId = loggedInUser? loggedInUser.profile._id : null;
