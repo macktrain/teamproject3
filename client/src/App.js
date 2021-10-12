@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Search from './pages/Search';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Inbox from './pages/Inbox'
 
 //global variables start
 window.user = {
@@ -78,6 +79,9 @@ function App() {
             </Route>
             <Route exact path="/me">
               <Profile />
+            </Route>
+            <Route exact path="/inbox">
+              <Inbox />
             </Route>
             <Route exact path="/search">
               <Search />

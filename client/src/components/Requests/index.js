@@ -8,7 +8,7 @@ import { RETRIEVE_FRIEND_REQUESTS } from '../../utils/queries';
 import { DECLINE_FRIEND } from '../../utils/mutations';
 import {useSelector} from 'react-redux';
 import { isNullableType } from 'graphql';
-import userImg from '../../pages/assets/images/user.gif'
+import userImg from '../assets/usrImg.png'
 
 //THIS COMPONENT NEEDS AN ARRAY OF PROFILEIDs SO that it 
 //May prepare a results page of resultant profiles.

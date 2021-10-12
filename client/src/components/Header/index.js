@@ -1,57 +1,100 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  makeStyles,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import Auth from '../../utils/auth';
-import {useSelector,useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from "react-redux";
+import flogo from '../assets/flogo.png';
 
-const Header = () => {
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontSize: "60px",
+    color: "grey"
+  },
+  navlinks: {
+    marginLeft: theme.spacing(10),
+    display: "flex",
+  },
+ logo: {
+    height:'65px',
+    diplay: 'flex'
+  },
+  link: {
+    textDecoration: "none",
+    textShaddow: "3px 3px grey",
+    color: "grey",
+    fontSize: "20px",
+    marginLeft: theme.spacing(20),
+    "&:hover": {
+      color: "black",
+      border: "1px dotted white",
+    },
+    bar: {
+      color:"white"
+    }
+  },
+}));
+
+function Header() {
+  const classes = useStyles();
   const dispatch = useDispatch();
-  const loggedInUser = useSelector((state) => state.userLoggedIn);
+  const loggedInUser =useSelector((state) => state.userLoggedIn);
   const logout = (event) => {
-    event.preventDefault();
     Auth.logout();
-    dispatch({type: 'LOGOUT'});
-  };
-  return (
-    <header className="bg-danger text-dark mb-4 py-3 display-flex align-center">
-      <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Friender
-          </h1>
-        </Link>
-        <p className="m-0" style={{ fontSize: '1.25rem', fontWeight: '700' }}>
-          The G-Version of Tinder
-        </p>
-        <div>
-          {loggedInUser ? (
-            <>
-            <Link className="btn btn-lg btn-primary m-2" to="/search">
-              Find a Friend
-            </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="../FriendsList/index.js">
-                Friends
-              </Link>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
-                View My Profile
-              </Link>
-              <Link className="btn btn-lg btn-primary m-2" onClick={logout}>
-                Logout
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-dark m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
-  );
-};
+    dispatch({type: 'LOGOUT'})
+  }
 
+  return (
+    <AppBar position="static">
+      <CssBaseline />
+      <Toolbar className={classes.bar} >
+        <Link variant="h1" className={classes.title} to= "/">
+          Friender
+        </Link>
+        <img className={classes.logo} src={flogo} alt={flogo}/>
+
+          <div>
+{loggedInUser ? (
+  <>
+  <div className = {classes.navlinks}>
+  <Link className= {classes.link} to="/search">
+    Search for a Friend
+  </Link>
+    <Link className={classes.link} to="../FriendsList/index.js">
+      Friends
+    </Link>
+    <Link className={classes.link} to="/me">
+      View My Profile
+    </Link>
+    <Link className={ classes.link} to="/inbox" >
+      Inbox
+    </Link>
+    <Link className={ classes.link} onClick={logout} >
+      Logout
+    </Link>
+    </div>
+  </>
+) : (
+  <>
+    <Link className={classes.link} to="/login">
+      Login
+    </Link>
+    <Link className={classes.link} to="/signup">
+      Signup
+    </Link>
+  </>
+)}
+</div>
+         
+      </Toolbar>
+    </AppBar> 
+  );
+}
 export default Header;
+
+
